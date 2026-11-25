@@ -12,7 +12,11 @@
 ## 安装与卸载
 
 1. 解压发布页的 Windows x64 ZIP。若装过手动登记节点的旧版，先用旧包的 Guard.cmd Uninstall 卸载。
-2. 用平时运行 ViewTurbo 的 Windows 账号打开**管理员 PowerShell**，进入解压目录，执行：
+2. 用平时运行 ViewTurbo 的 Windows 账号打开**管理员 PowerShell**，进入解压目录。GitHub 上的在线安装包首次运行时会下载并校验官方依赖：
+
+       .\Install-Online.cmd
+
+   如已备好包含 engine.zip 的离线包，直接执行：
 
        .\Guard.cmd Install
 
@@ -49,4 +53,4 @@
 - 节点、ViewTurbo 进程和 TUN 路由变化时，程序使原核验结果失效，关闭已识别的 Google 流，并经 ViewTurbo 的同一个 SOCKS5 入口重新读取 Cloudflare 返回的出口地区。客户端没有可原子锁定节点的公开接口。如果 ViewTurbo 或服务商在两次探测之间静默改路由，会有短暂检测窗口。出口地区核验也可能与 Google 的地区判断不同。
 - 已识别的 Google 连接使用 TCP，浏览器通常会从 QUIC 回退到 HTTPS/TCP。识别范围包括常用 Google 域名、Antigravity 域名以及已公开的 Google 服务 IPv4/IPv6 网段。未知共享 IP、自定义加密 DNS 返回的未知地址、第三方加密转发属于识别盲区。
 - 如果在 ViewTurbo 把 Google 域名明确设成直连，防护规则可能使它连不上。可把相关域名设为代理规则再验收。工具同时设置 Chrome 和 Edge 使用 Windows DNS，以便覆盖 Google 域名。已有企业托管 DNS 或浏览器策略时，安装可能中止。
-- 安装包包含未经修改的 [sing-box 1.14.4 Windows x64 官方发行文件](https://github.com/SagerNet/sing-box/releases/tag/v1.14.4)及许可，安装会校验 SHA-256。[对应源码](https://github.com/SagerNet/sing-box/tree/v1.14.4)。地址列表来自 [Google 公开 IP 范围](https://docs.cloud.google.com/vpc/docs/configure-private-google-access#ip-ranges)，扣除了 Google Cloud 客户地址段。
+- 程序使用未经修改的 [sing-box 1.14.4 Windows x64 官方发行文件](https://github.com/SagerNet/sing-box/releases/tag/v1.14.4)，安装会校验 SHA-256。[对应源码及许可](https://github.com/SagerNet/sing-box/tree/v1.14.4)。地址列表来自 [Google 公开 IP 范围](https://docs.cloud.google.com/vpc/docs/configure-private-google-access#ip-ranges)，扣除了 Google Cloud 客户地址段。
