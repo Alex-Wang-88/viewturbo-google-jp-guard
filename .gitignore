@@ -1,0 +1,11 @@
+engine.zip
+*.exe
+*.dll
+*.log
+/bin/
+/build/
+/dist/
+/data/
+status.json
+install.json
+*.tmp
